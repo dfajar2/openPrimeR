@@ -18,7 +18,6 @@ test_that("primer_filtering_constraints", {
     active.constraints <- c("primer_length", "gc_clamp", "gc_ratio", 
                             "no_runs", "no_repeats", 
                             "primer_coverage", "primer_specificity")
-    #constraint.df <- check_constraints(primer.df, template.df, settings)
     filter.result <- suppressWarnings(cascaded.filter.quick(primer.df, template.df, settings,
                         to.compute.constraints = active.constraints))
     excluded.df <- filter.result$excluded
