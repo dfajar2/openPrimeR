@@ -35,8 +35,17 @@ evaluate.GC.clamp <- function(y) {
                 h <- h[order(h)]
             }
         })
-        gc.counts <- max(unlist(lapply(seq_along(hits), 
-            function(x) consecutive.GC.count(hits[[x]], nchar(tails)[x]))))
+        # for disambiguated seqs: take the shortest GC clamp found in any seq
+         # reason: if we want to have a gc clamp, we dont want to have an ambig
+         # seq that represents a seq that actually doesn't have a gc clamp
+        gc.count <- 0
+        if (any(gc.counts > 3)) {
+            # more than 3 GCs are undesirable
+            gc.count <- max(gc.counts)    
+        } else {
+            # few GCs (e.g. 0) are undesirable
+            gc.count <- min(gc.counts)
+        }
     }
     return(GC.counts)
 }
