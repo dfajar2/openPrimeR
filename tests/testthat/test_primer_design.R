@@ -24,8 +24,7 @@ test_that("primer_filtering_constraints", {
     # filtered by primer length:
     filter.reasons <- rep(NA, nrow(primer.df))
     filter.reasons[1:2] <- "primer_length"
-    filter.reasons[3:6] <- "gc_clamp"
-    filter.reasons[7] <- "gc_ratio"
+    filter.reasons[3:7] <- "gc_clamp"
     filter.reasons[8] <- "primer_specificity"
     expect_equal(filter.reasons, excluded.df$Exclusion_Reason)
 })
